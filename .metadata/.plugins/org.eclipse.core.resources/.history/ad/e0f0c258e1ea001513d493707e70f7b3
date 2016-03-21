@@ -1,0 +1,91 @@
+import java.util.*;
+public class Solution {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] in = {3,3,1,2,3,2,3,1};
+		System.out.println(permuteUnique(in));
+	}
+	
+    public static List<List<Integer>> permuteUnique(int[] nums) {
+        if(nums.length==0){
+            return null;
+        }
+        else{
+            int[] visited = new int[nums.length];
+            return generate(nums,visited);
+        }
+    }
+    private static List<List<Integer>> generate(int[] nums, int[] visited){
+        if(nums.length==0){
+            return null;
+        }
+        else if(nums.length==1){
+            List<List<Integer>> result = new ArrayList<List<Integer>>();
+            List<Integer> r = new ArrayList<Integer>();
+            r.add(nums[0]);
+            result.add(r);
+            return result;
+        }
+        else{
+            HashSet<List<Integer>> filter = new HashSet<List<Integer>>();
+            for(int i = 0; i<nums.length; i++){
+                if(visited[i]==0){
+                    visited[i] = 1;
+                    List<List<Integer>> data = generate(nums,visited);
+                    for(List<Integer> x: data){
+                        x.add(nums[i]);
+                        filter.add(x);
+                    }
+                    visited[i] = 0;
+                }
+            }
+            if(filter.size()>0){
+            	return new ArrayList<List<Integer>>(filter);
+            }
+            else{
+                List<List<Integer>> result = new ArrayList<List<Integer>>();
+                List<Integer> r = new ArrayList<Integer>();
+                result.add(r);
+                return result;
+            }
+        }
+    }	
+	
+	
+	
+	
+	
+	
+	
+//    public static List<List<Integer>> permuteUnique(int[] nums) {
+//        List<Integer> input = new ArrayList<Integer>();
+//        for(int x : nums){
+//        	input.add(x);
+//        }
+//        return generate(input);
+//    }
+//    private static List<List<Integer>> generate(List<Integer> nums){
+//    	if(nums.size()==0){
+//    		return null;
+//    	}
+//    	else if(nums.size()==1){
+//    		List<List<Integer>> r = new ArrayList<List<Integer>>();
+//    		r.add(nums);
+//    		return r;
+//    	}
+//    	else{
+//    		HashSet<List<Integer>> filter = new HashSet<List<Integer>>();
+//    		for(int i = 0; i<nums.size(); i++){
+//    			List<Integer> next = new LinkedList<Integer>(nums);
+//    			int j = next.remove(i);
+//    			List<List<Integer>> data = generate(next);
+//    			for(List<Integer> x : data){
+//    				x.add(j);
+//    				filter.add(x);
+//    			}
+//    		}
+//    		return new LinkedList<List<Integer>>(filter);
+//    	}
+//    }
+}

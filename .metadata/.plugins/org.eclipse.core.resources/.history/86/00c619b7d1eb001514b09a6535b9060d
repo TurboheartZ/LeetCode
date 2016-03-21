@@ -1,0 +1,25 @@
+import java.util.*;
+public class Solution {
+
+	public static main(String[] args) {
+		// TODO Auto-generated method stub
+		StringBuffer buff = new StringBuffer();
+		buff.reverse().toString();
+		HashSet<Character> filter =new HashSet<Character>();
+		filter.add('a');
+		List<Character> l = new ArrayList<Character>();
+		l.sort(new Comparator<Character>(){
+			@Override
+			public int compare(Character a, Character b){
+				return a>b?1:a==b?0:-1;
+			}
+		});
+		System.out.println(l);
+		String t = "";
+		for(char x : filter){
+			t+=x;
+		}
+		System.out.println(t);
+	}
+
+}

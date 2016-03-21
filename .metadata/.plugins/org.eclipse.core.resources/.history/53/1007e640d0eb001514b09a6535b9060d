@@ -1,0 +1,20 @@
+import java.util.*;
+public class Solution {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StringBuffer buff = new StringBuffer();
+		buff.reverse().toString();
+		HashSet<Character> filter =new HashSet<Character>();
+		filter.add('a');
+		List<Character> l = new ArrayList<Character>();
+		l.sort(null);
+		System.out.println(l);
+		String t = "";
+		for(char x : filter){
+			t+=x;
+		}
+		System.out.println(t);
+	}
+
+}
